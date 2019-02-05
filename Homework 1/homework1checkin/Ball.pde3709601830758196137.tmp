@@ -1,0 +1,37 @@
+class Ball{
+   PVector pos; 
+   PVector vel; 
+   PVector acc;
+   float velMax; 
+   
+   Ball(){
+     pos = new PVector(width/2, 20);
+     vel = new PVector(0,1);
+     acc = new PVector(0,-0.01);
+     velMax = 30;
+     
+   }
+   
+   void update(){
+     acc.add(0,9.8); 
+     vel.add(acc);
+     pos.add(vel);
+     acc.mult(0); 
+   }
+   
+   void display(){
+     stroke(5);
+     fill(32,193,27);
+     ellipse(pos.x,pos.y,16,16);
+   }
+
+   void checkEdges() {
+    if (pos.y > height-14) {
+      vel.mult(-1.0);
+      pos.y = height-14  ;
+    } else if (pos.y < 14) {
+      vel.mult(-1.0); 
+      pos.y = 1; 
+    }
+  }  
+}
