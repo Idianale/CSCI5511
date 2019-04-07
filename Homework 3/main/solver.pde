@@ -1,8 +1,13 @@
 class Solver{
   ArrayList<WayPoint> wayPoints = new ArrayList<WayPoint>();
   float area = 500; 
-  int sizeList = (int)random(10,31); 
-
+  int sizeList = (int)random(10,500); 
+  // Index corresponds to a node; 
+  // each index contains: 
+  // - list of waypoints that represent the nearest neighbors of that node
+  // - distance from between that node and its neighbor
+   
+ 
   Solver(){
     // Sample Points 
     for(int i = 0; i < sizeList; i++){
@@ -10,13 +15,14 @@ class Solver{
       // If sample point not in collision space add it to the list.
       if(!checkCollision(sample)){ wayPoints.add(sample);}
     }
-    
-    // Create Map
-    
+        
     // find the nearest neighbors of the each wayPoint
     for(int i = 0; i < wayPoints.size(); i++){
       wayPoints.get(i).findNN(wayPoints); 
     }
+   
+    
+    // construct a map 
     
   }
   
@@ -29,23 +35,14 @@ class Solver{
   }
   
   
-  void displayPoints(){ //<>//
+  void display(){
     for(int i = 0; i < wayPoints.size(); i++){
       wayPoints.get(i).display(); 
     }
   }
   
-  /*
-  void displayEdges(){
-    for(int i = 0; i < wayPoints.size(); i++){
-      stroke(2); 
-      ArrayList<WayPoint> nList = wayPoints.get(i).getNeighbors();
-      for(int j = 0; j < nList.size(); j++){ 
-        line((float)wayPoints.get(i).pos.x, (float)nList.get(j).pos.x, (float)wayPoints.get(i).pos.y, (float)nList.get(j).pos.y); 
-      }
-    }
-  }
-  */
+
+  
   
 }
 
