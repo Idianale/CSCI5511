@@ -3,7 +3,7 @@ class Path {
   double radius; 
 
   Path() {
-    radius = 10;
+    radius = 15;
     points = new ArrayList<DVector>();
   }
 

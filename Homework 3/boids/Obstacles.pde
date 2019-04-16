@@ -7,13 +7,19 @@ class Obstacles {
     obsPos = new ArrayList<Obstacle>(); 
   }
   
-  boolean collisions(){
-    boolean collide = false; 
-    if(collide){
-      return true; 
-    } else {
-      return false; 
-    }
+  void addObs(Obstacle o){
+    obsPos.add(o); 
+  }
+  
+  void newObs(double x, double y, double r){
+    Obstacle o = new Obstacle(new DVector(x,y,0), r);
+    obsPos.add(o); 
+  }
+  
+  void display(){
+    for(int i = 0; i < obsPos.size(); i++){
+      obsPos.get(i).display(); 
+     }
   }
 }
 
@@ -42,11 +48,8 @@ class Obstacle {
     area = Math.pow(l,2); 
   }
   
-  void display(){
-  }
- 
    // Assumes object is either agent or obstacle
-  boolean collision(Agent o){
+  boolean collision(Obstacle o){
     DVector d = o.pos.copy(); 
     boolean collide = false; 
     /*
@@ -59,17 +62,10 @@ class Obstacle {
     }
   }
   
-  boolean collision(Obstacle o){
-    DVector d = o.pos.copy(); 
-    boolean collide = false; 
-    /*
-    Do stuff
-    */
-    if(collide){
-      return true; 
-    } else {
-      return false; 
-    }
+  
+  void display(){
+    fill(0); 
+    circle((float)pos.x, (float)pos.y, (float)radius); 
   }
 
 }
